@@ -1,0 +1,72 @@
+print('Bem-vindo ao seu Banco Digital')
+
+
+menu = """
+
+[d] Depositar
+[s] Sacar
+[e] Extrato
+[q] Sair
+
+=>"""
+
+saldo = 0
+limite = 500
+extrato = ""
+n_saques = 0
+LIMITE_SAQUES = 3
+
+while True:
+    print('Insira sua opção')
+    opcao = input(menu)
+
+    if opcao == 'd':
+        print('Depósito')
+        valor = float(input('Insira o valor a ser depositado'))
+
+        if valor > 0:
+            saldo += valor
+            extrato += f'Depósito: R$ {valor:.2f}\n'
+
+        else:
+            print('Deu mole, insira o valor correto')
+
+
+
+    elif opcao == 's':
+        print('Saque')
+        valor = float(input('Informe o valor a ser sacado:'))
+
+        exc_saldo = valor > saldo
+        exc_limite = valor > limite
+        exc_saque = n_saques >= LIMITE_SAQUES
+
+        if exc_saldo:
+                print('Ih, deu ruim. O seu saldo não é suficiente')
+
+        elif  exc_limite:
+                print('Putz, foi mal! O valor do saque excede o limite.')
+
+        elif exc_saque:
+                print('Eita, não vai dar! o limite de saques foi excedido')
+
+        elif valor > 0:
+            saldo -= valor
+            extrato += f'Saque: R$ {valor:.2f}\n'
+            n_saques += 1
+
+        else:
+            print('Deu mole, insira o valor correto')
+
+    elif opcao == 'e':
+        print('Extrato')
+        print('=============Este é o seu EXTRATO===========(mas não é de tomate rsrs)')
+        print('Não foram realizadas movimentações' if not extrato else extrato)
+        print(f'\nSaldo: R$: {saldo:.2f}')
+        print('======================================================================')
+
+    elif opcao == 'q':
+        break
+
+    else:
+        print('Olha o vacilo eim!, por favor selecione novamente a opção desejada')
