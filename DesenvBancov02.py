@@ -61,7 +61,7 @@ def criar_usuario(usuarios):
     usuario = filtrar_usuario(cpf, usuarios)
 
     if usuario:
-        print('\n@@@ Você já é da família, CPF encontrado na nossa base de dados')
+        print('\n Você já é da família, CPF encontrado na nossa base de dados')
         return
 
     nome = input('Informe o nome completo: ')
@@ -114,12 +114,12 @@ def main():
     while True:
         opcao = menu()
 
-        if opcao == "d":
+        if opcao == 'd':
             valor = float(input("Informe o valor do depósito: "))
 
             saldo, extrato = depositar(saldo, valor, extrato)
 
-        elif opcao == "s":
+        elif opcao == 's':
             valor = float(input("Informe o valor do saque: "))
 
             saldo, extrato = sacar(
@@ -131,27 +131,27 @@ def main():
                 limite_saques=LIMITE_SAQUES,
             )
 
-        elif opcao == "e":
+        elif opcao == 'e':
             exibir_extrato(saldo, extrato=extrato)
 
-        elif opcao == "nu":
+        elif opcao == 'nu':
             criar_usuario(usuarios)
 
-        elif opcao == "nc":
+        elif opcao == 'nc':
             numero_conta = len(contas) + 1
             conta = criar_conta(AGENCIA, numero_conta, usuarios)
 
             if conta:
                 contas.append(conta)
 
-        elif opcao == "lc":
+        elif opcao == 'lc':
             listar_contas(contas)
 
-        elif opcao == "q":
+        elif opcao == 'q':
             break
 
         else:
-            print("Operação inválida, por favor selecione novamente a operação desejada.")
+            print('Olha o vacilo eim!, por favor selecione novamente a opção desejada')
 
 
 main()
